@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class 9 Physics Hub | Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">Physics Hub</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="syllabus.html" class="nav-link">Syllabus</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="icon sun">☀️</span>
+          <span class="icon moon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Resource library</p>
+          <h2>Physics Files & Study Materials</h2>
+          <p>Search and filter your notes, assignments, and lab reports by topic and file type.</p>
+        </div>
+
+        <div class="toolbar">
+          <input type="text" id="resourceSearch" placeholder="Search file, chapter, or type..." />
+          <div class="filter-group">
+            <button class="filter-btn active" data-branch="all">All</button>
+            <button class="filter-btn" data-branch="mechanics">Mechanics</button>
+            <button class="filter-btn" data-branch="energy">Thermodynamics / Energy</button>
+            <button class="filter-btn" data-branch="acoustics">Acoustics</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Chapter</th>
+                <th>Branch</th>
+                <th>Type</th>
+                <th>File</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="resourceTableBody">
+              <tr data-branch="mechanics" data-type="notes">
+                <td>Motion</td>
+                <td>Mechanics</td>
+                <td>Notes</td>
+                <td>Chapter Notes (PDF)</td>
+                <td><a href="files/motion-notes.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="assignment">
+                <td>Motion</td>
+                <td>Mechanics</td>
+                <td>Assignment</td>
+                <td>Assignment_1.pdf</td>
+                <td><a href="files/motion-assignment-1.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="lab">
+                <td>Motion</td>
+                <td>Mechanics</td>
+                <td>Lab Report</td>
+                <td>Lab_Experiment_Guide.docx</td>
+                <td><a href="files/motion-lab-guide.docx" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="notes">
+                <td>Force and Laws of Motion</td>
+                <td>Mechanics</td>
+                <td>Notes</td>
+                <td>Chapter Notes (PDF)</td>
+                <td><a href="files/force-laws-notes.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="assignment">
+                <td>Force and Laws of Motion</td>
+                <td>Mechanics</td>
+                <td>Assignment</td>
+                <td>Assignment_2.pdf</td>
+                <td><a href="files/force-laws-assignment.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="lab">
+                <td>Force and Laws of Motion</td>
+                <td>Mechanics</td>
+                <td>Lab Report</td>
+                <td>Lab_Report_Template.docx</td>
+                <td><a href="files/force-lab-report.docx" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="notes">
+                <td>Gravitation</td>
+                <td>Mechanics</td>
+                <td>Notes</td>
+                <td>Chapter Notes (PDF)</td>
+                <td><a href="files/gravitation-notes.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="assignment">
+                <td>Gravitation</td>
+                <td>Mechanics</td>
+                <td>Homework</td>
+                <td>Homework_Set.pdf</td>
+                <td><a href="files/gravitation-homework.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="mechanics" data-type="lab">
+                <td>Gravitation</td>
+                <td>Mechanics</td>
+                <td>Lab Report</td>
+                <td>Gravity_Experiment_Guide.docx</td>
+                <td><a href="files/gravitation-lab.docx" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="energy" data-type="notes">
+                <td>Work and Energy</td>
+                <td>Thermodynamics / Energy</td>
+                <td>Notes</td>
+                <td>Chapter Notes (PDF)</td>
+                <td><a href="files/work-energy-notes.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="energy" data-type="assignment">
+                <td>Work and Energy</td>
+                <td>Thermodynamics / Energy</td>
+                <td>Assignment</td>
+                <td>Assignment_4.pdf</td>
+                <td><a href="files/work-energy-assignment.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="energy" data-type="lab">
+                <td>Work and Energy</td>
+                <td>Thermodynamics / Energy</td>
+                <td>Lab Report</td>
+                <td>Energy_Lab_Procedure.docx</td>
+                <td><a href="files/work-energy-lab.docx" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="acoustics" data-type="notes">
+                <td>Sound</td>
+                <td>Acoustics</td>
+                <td>Notes</td>
+                <td>Chapter Notes (PDF)</td>
+                <td><a href="files/sound-notes.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="acoustics" data-type="assignment">
+                <td>Sound</td>
+                <td>Acoustics</td>
+                <td>Assignment</td>
+                <td>Assignment_5.pdf</td>
+                <td><a href="files/sound-assignment.pdf" target="_blank">Open</a></td>
+              </tr>
+
+              <tr data-branch="acoustics" data-type="lab">
+                <td>Sound</td>
+                <td>Acoustics</td>
+                <td>Lab Report</td>
+                <td>Sound_Experiment_Guide.docx</td>
+                <td><a href="files/sound-lab-guide.docx" target="_blank">Open</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Site in Progress 🛠️</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
