@@ -70,3 +70,26 @@ filterButtons.forEach((button) => {
 });
 
 applyFilters();
+// Theme toggle: remember preference in localStorage
+(function () {
+  const body = document.body;
+  const toggle = document.getElementById('themeToggle');
+
+  // Apply saved theme
+  const saved = localStorage.getItem('physics-theme');
+  if (saved === 'dark') body.classList.add('dark');
+
+  toggle?.addEventListener('click', () => {
+    const isDark = body.classList.toggle('dark');
+    localStorage.setItem('physics-theme', isDark ? 'dark' : 'light');
+  });
+})();
+
+// Account avatar placeholder behavior (optional): small toast or alert
+(function () {
+  const avatar = document.getElementById('accountAvatar');
+  avatar?.addEventListener('click', () => {
+    // Keep this minimal — replace with modal or real auth later
+    alert('No account is signed in. This is a placeholder avatar.');
+  });
+})();
