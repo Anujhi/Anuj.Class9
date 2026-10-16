@@ -17,22 +17,33 @@
         <a href="resources.html" class="nav-link active">Resources</a>
       </nav>
 
-       <!-- Replace the .nav-actions area in each page header with this -->
-     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark / light">
-       <span class="icon sun">☀️</span>
-       <span class="icon moon">🌙</span>
-      </button>
+      <!-- REPLACE .nav-actions block in each page with this snippet -->
+<div class="nav-actions">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark / light">
+    <span class="icon sun">☀️</span>
+    <span class="icon moon">🌙</span>
+  </button>
 
-  <!-- Account placeholder: No Account -->
-      <button class="account-avatar" id="accountAvatar" aria-label="No account signed in" title="No account — placeholder">
-       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <div class="account-wrapper">
+    <!-- Avatar button -->
+    <button class="account-avatar" id="accountAvatar" aria-haspopup="true" aria-expanded="false" title="Account (no sign-in)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor" opacity="0.95"/>
         <path d="M3 21a9 9 0 0118 0v0a1 1 0 01-1 1H4a1 1 0 01-1-1v0z" fill="currentColor" opacity="0.6"/>
-       </svg>
-       <span class="visually-hidden">No Account</span>
-      </button>
-     </div>
+      </svg>
+      <span class="visually-hidden">Account menu</span>
+    </button>
+
+    <!-- optional small label next to avatar (hidden on very small screens) -->
+    <span class="account-label" id="accountLabel" aria-hidden="true"></span>
+
+    <!-- Popup menu (hidden unless opened) -->
+    <div class="account-menu" id="accountMenu" aria-hidden="true">
+      <!-- JS will populate this area with either login form or welcome + logout -->
+      <div class="account-menu-inner" id="accountMenuInner"></div>
+    </div>
+  </div>
+</div>
     </div>
   </header>
 
