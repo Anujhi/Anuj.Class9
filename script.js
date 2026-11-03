@@ -265,3 +265,137 @@
     }
   };
 })();
+  // ----------------------
+  // AUTHOR EASTER EGG
+  // ----------------------
+  const authorName = document.getElementById("authorName");
+  const easterEggOverlay = document.getElementById("easterEggOverlay");
+
+  authorName?.addEventListener("click", (event) => {
+    if (event.button === 0 && event.detail === 3 && easterEggOverlay) {
+      easterEggOverlay.hidden = false;
+      easterEggOverlay.setAttribute("aria-hidden", "false");
+    }
+  });
+
+  easterEggOverlay?.addEventListener("click", () => {
+    easterEggOverlay.hidden = true;
+    easterEggOverlay.setAttribute("aria-hidden", "true");
+    // ----------------------
+  // SECRET GRAVITY MODE
+  // Click the logo five times to make page cards fall.
+  // A normal logo click still navigates home after a short pause.
+  // ----------------------
+  const gravityTrigger = document.getElementById("gravityTrigger");
+  let logoClickCount = 0;
+  let logoClickTimer;
+
+  function startGravityMode() {
+    const cards = document.querySelectorAll(
+      ".mini-panel, .stat-box, .about-card, .review-card, " +
+      ".chapter-card, .study-checklist, .formula-card, .quick-card, .toolbar"
+    );
+
+    document.body.classList.add("gravity-mode");
+
+    cards.forEach((card, index) => {
+      card.style.setProperty("--fall-delay", `${index * 0.08}s`);
+      card.classList.remove("gravity-fall");
+
+      // Restart the animation if Gravity Mode is triggered again.
+      void card.offsetWidth;
+      card.classList.add("gravity-fall");
+    });
+
+    setTimeout(() => {
+      cards.forEach((card) => {
+        card.classList.remove("gravity-fall");
+        card.style.removeProperty("--fall-delay");
+      });
+      document.body.classList.remove("gravity-mode");
+    }, 3500);
+  }
+
+  gravityTrigger?.addEventListener("click", (event) => {
+    if (event.button !== 0) return;
+
+    // Pause normal logo navigation briefly so repeated clicks can trigger the secret.
+    event.preventDefault();
+    logoClickCount += 1;
+    clearTimeout(logoClickTimer);
+
+    if (logoClickCount >= 5) {
+      logoClickCount = 0;
+      startGravityMode();
+      return;
+    }
+
+    // If this was an ordinary click, continue to the home page.
+    logoClickTimer = setTimeout(() => {
+      logoClickCount = 0;
+      window.location.href = gravityTrigger.href;
+    }, 900);
+  });
+
+  // ----------------------
+  // KONAMI CODE SURPRISE
+  // ↑ ↑ ↓ ↓ ← → ← → B A
+  // ----------------------
+  const konamiCode = [
+    "ArrowUp", "ArrowUp",
+    "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight",
+    "ArrowLeft", "ArrowRight",
+    "b", "a"
+  ];
+  let konamiIndex = 0;
+
+  document.addEventListener("keydown", (event) => {
+    // Don't capture keys while someone is typing in a field.
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.closest("input, textarea, select, [contenteditable='true']")
+    ) {
+      return;
+    }
+
+    const pressedKey = event.key.length === 1
+      ? event.key.toLowerCase()
+      : event.key;
+
+    if (pressedKey === konamiCode[konamiIndex]) {
+      konamiIndex += 1;
+    } else {
+      konamiIndex = pressedKey === konamiCode[0] ? 1 : 0;
+    }
+
+    if (konamiIndex === konamiCode.length) {
+      konamiIndex = 0;
+      showKonamiSurprise();
+    }
+  });
+
+  function showKonamiSurprise() {
+    let overlay = document.getElementById("easterEggOverlay");
+
+    // Create the overlay if this page doesn't already have the Easter egg markup.
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "easterEggOverlay";
+      overlay.className = "easter-egg-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.appendChild(overlay);
+    }
+
+    overlay.textContent = "Secret unlocked: Keep exploring the laws of physics!";
+    overlay.hidden = false;
+    overlay.setAttribute("aria-hidden", "false");
+
+    // One click dismisses the surprise.
+    overlay.onclick = () => {
+      overlay.hidden = true;
+      overlay.setAttribute("aria-hidden", "true");
+    };
+  }});
