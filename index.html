@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="index.html" class="brand">Physics Hub</a>
+      <a href="index.html" class="brand" id="gravityTrigger">Physics Hub</a>
 
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link active">Home</a>
@@ -17,33 +17,28 @@
         <a href="resources.html" class="nav-link">Resources</a>
       </nav>
 
-     <!-- REPLACE .nav-actions block in each page with this snippet -->
-<div class="nav-actions">
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark / light">
-    <span class="icon sun">☀️</span>
-    <span class="icon moon">🌙</span>
-  </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark / light">
+          <span class="icon sun">☀️</span>
+          <span class="icon moon">🌙</span>
+        </button>
 
-  <div class="account-wrapper">
-    <!-- Avatar button -->
-    <button class="account-avatar" id="accountAvatar" aria-haspopup="true" aria-expanded="false" title="Account (no sign-in)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor" opacity="0.95"/>
-        <path d="M3 21a9 9 0 0118 0v0a1 1 0 01-1 1H4a1 1 0 01-1-1v0z" fill="currentColor" opacity="0.6"/>
-      </svg>
-      <span class="visually-hidden">Account menu</span>
-    </button>
+        <div class="account-wrapper">
+          <button class="account-avatar" id="accountAvatar" aria-haspopup="true" aria-expanded="false" title="Account (no sign-in)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor" opacity="0.95"/>
+              <path d="M3 21a9 9 0 0118 0v0a1 1 0 01-1 1H4a1 1 0 01-1-1v0z" fill="currentColor" opacity="0.6"/>
+            </svg>
+            <span class="visually-hidden">Account menu</span>
+          </button>
 
-    <!-- optional small label next to avatar (hidden on very small screens) -->
-    <span class="account-label" id="accountLabel" aria-hidden="true"></span>
+          <span class="account-label" id="accountLabel" aria-hidden="true"></span>
 
-    <!-- Popup menu (hidden unless opened) -->
-    <div class="account-menu" id="accountMenu" aria-hidden="true">
-      <!-- JS will populate this area with either login form or welcome + logout -->
-      <div class="account-menu-inner" id="accountMenuInner"></div>
-    </div>
-  </div>
-</div>
+          <div class="account-menu" id="accountMenu" aria-hidden="true">
+            <div class="account-menu-inner" id="accountMenuInner"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -108,14 +103,16 @@
           <div class="about-header">
             <h2>About the Author</h2>
           </div>
+
           <div class="author-profile">
             <div class="author-name-wrap">
-              <h3 class="author-name">Anuj</h3>
-              </div>
-          </div>
+              <h3 class="author-name" id="authorName">Anuj</h3>
+            </div>
+
+            <div class="author-meta">
+              <div class="meta-item">
                 <span class="meta-label">Age</span>
                 <span class="meta-value">13</span>
-              </div>
               </div>
             </div>
           </div>
@@ -142,6 +139,18 @@
       <p>Site in Progress 🛠️... © All Rights Reserved</p>
     </div>
   </footer>
+
+  <div
+    class="easter-egg-overlay"
+    id="easterEggOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Easter egg"
+    hidden
+  >
+    <span>[Your Name] ...]</span>
+  </div>
 
   <script src="script.js"></script>
 </body>
