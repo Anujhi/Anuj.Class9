@@ -419,6 +419,30 @@ body:not(.dark) .theme-toggle .sun {
 .section-heading {
   margin-bottom: 28px;
 }
+.gravity-fall {
+  animation: gravity-fall 1.8s ease-in-out var(--fall-delay, 0s) both;
+}
+
+@keyframes gravity-fall {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  35% {
+    transform: translateY(55vh) rotate(12deg);
+  }
+  65% {
+    transform: translateY(42vh) rotate(-8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gravity-fall {
+    animation: none;
+  }
+}
 
 .section-heading p:last-child {
   color: var(--muted);
@@ -820,4 +844,21 @@ td a {
 @media (max-width: 540px) {
   .account-menu { right: 6px; left: 6px; width: auto; }
   .account-label { display: none; }
+}
+.easter-egg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-size: clamp(2rem, 8vw, 5rem);
+}
+
+/* Ensure the hidden attribute takes precedence over the display rule above. */
+.easter-egg-overlay[hidden] {
+  display: none;
 }
