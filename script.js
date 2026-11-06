@@ -29,27 +29,7 @@
   const reviewSuccess = document.getElementById("reviewSuccess");
   const submitReview = document.getElementById("submitReview");
 
-  submitReview?.addEventListener("click", () => {
-    const value = reviewInput?.value.trim();
-
-    if (!value) {
-      reviewSuccess.textContent = "Please enter a suggestion before submitting.";
-      reviewSuccess.classList.add("show");
-      return;
-    }
-
-    // No DB: we just show a success message
-    reviewSuccess.textContent = "Thank you! Your review has been submitted.";
-    reviewSuccess.classList.add("show");
-
-    if (reviewInput) reviewInput.value = "";
-
-    // Optionally hide the message after a short time
-    setTimeout(() => {
-      reviewSuccess.classList.remove("show");
-      reviewSuccess.textContent = "";
-    }, 4000);
-  });
+submitReview
 
   // ----------------------
   // FORMULA TOGGLE (existing)
@@ -399,3 +379,106 @@
       overlay.setAttribute("aria-hidden", "true");
     };
   }});
+  // ----------------------
+  // WEB3FORMS VERIFICATION
+  // Access key = your Web3Forms UUID
+  // No email field and no email input are used
+  // ----------------------
+  const WEB3FORMS_ACCESS_KEY = "038d570f-cc2e-4c71-935f-d5c24509203f";
+  const VERIFIED_VISITOR_KEY = "physics-verified-name";
+
+  const visitorName = document.getElementById("visitorName");
+  const visitorSource = document.getElementById("visitorSource");
+  const verifyBtn = document.getElementById("verifyBtn");
+  const visitorStatus = document.getElementById("visitorStatus");
+
+  function showVisitorStatus(message, type = "info") {
+    if (!visitorStatus) return;
+
+    visitorStatus.textContent = message;
+
+    visitorStatus.style.color = type === "success"
+      ? "#1f9d61"
+      : type === "error"
+      ? "#dc2626"
+      : "#123c69";
+  }
+
+  function validateVisitorForm() {
+    const sourceValue = visitorSource?.value.trim();
+    const nameValue = visitorName?.value.trim();
+
+    if (!sourceValue) {
+      visitorSource?.focus();
+      visitorSource?.setCustomValidity("Please fill this field");
+      visitorSource?.reportValidity();
+      return false;
+    }
+    visitorSource?.setCustomValidity("");
+
+    if (!nameValue) {
+      visitorName?.focus();
+      visitorName?.setCustomValidity("Please fill this field");
+      visitorName?.reportValidity();
+      return false;
+    }
+    visitorName?.setCustomValidity("");
+
+    return true;
+  }
+
+  async function sendVerificationToWeb3Forms() {
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "Physics Hub Friend Verification",
+      name: visitorName.value.trim(),
+      from_where: visitorSource.value.trim(),
+      message: "Visitor verified from Physics Hub",
+      botcheck: ""
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+      if (!response.ok || data.success !== true) {
+        throw new Error(data.message || "Submission failed");
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Web3Forms failed:", error);
+      return false;
+    }
+  }
+
+  verifyBtn?.addEventListener("click", async () => {
+    if (!validateVisitorForm()) return;
+
+    showVisitorStatus("Verifying...", "info");
+
+    const sent = await sendVerificationToWeb3Forms();
+
+    if (!sent) {
+      showVisitorStatus("Verification failed. Please try again later.", "error");
+      return;
+    }
+
+    const verifiedName = visitorName.value.trim();
+    sessionStorage.setItem(VERIFIED_VISITOR_KEY, verifiedName);
+
+    showVisitorStatus(`Verified as ${verifiedName}. You are logged in for this browser session.`, "success");
+  });
+
+  const savedName = sessionStorage.getItem(VERIFIED_VISITOR_KEY);
+  if (savedName && visitorName) {
+    visitorName.value = savedName;
+    showVisitorStatus(`Verified as ${savedName}.`, "success");
+  }
