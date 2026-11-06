@@ -862,3 +862,154 @@ td a {
 .easter-egg-overlay[hidden] {
   display: none;
 }
+/* Resources secret experience */
+.resource-secret {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 700ms ease, visibility 700ms ease;
+}
+
+.resource-secret[hidden] {
+  display: none;
+}
+
+.resource-secret.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.resource-secret__close {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.resource-secret__close:hover,
+.resource-secret__close:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.resource-secret__content {
+  display: grid;
+  justify-items: center;
+  gap: 30px;
+  padding: 24px;
+  text-align: center;
+}
+
+.resource-secret__mark {
+  min-height: 1.2em;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 12vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.resource-secret__mark.is-shown {
+  animation: resource-secret-reveal 850ms ease forwards;
+}
+
+.resource-secret__choices {
+  display: flex;
+  gap: clamp(28px, 8vw, 72px);
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.resource-secret__choices.is-shown {
+  opacity: 1;
+}
+
+.resource-secret__choice {
+  min-width: 72px;
+  padding: 12px 10px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.resource-secret__choice:hover,
+.resource-secret__choice:focus-visible {
+  color: #d7c6ff;
+  border-color: #d7c6ff;
+  transform: translateY(-2px);
+}
+
+.resource-secret__status {
+  min-height: 1.5em;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.resource-secret[data-selection="yes"] .resource-secret__content::before {
+  position: absolute;
+  z-index: -1;
+  color: rgba(255, 255, 255, 0.12);
+  content: "✿  ✽  ✿";
+  font-size: clamp(3rem, 10vw, 6rem);
+  letter-spacing: 0.4em;
+  animation: resource-secret-flowers 2s ease both;
+}
+
+@keyframes resource-secret-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(10px);
+  }
+  65% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes resource-secret-flowers {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resource-secret,
+  .resource-secret__choices,
+  .resource-secret__choice {
+    transition-duration: 1ms;
+  }
+
+  .resource-secret__mark.is-shown,
+  .resource-secret[data-selection="yes"] .resource-secret__content::before {
+    animation-duration: 1ms;
+  }
+}
