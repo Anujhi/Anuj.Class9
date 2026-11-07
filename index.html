@@ -121,17 +121,53 @@
     </section>
 
     <section class="section alt-bg">
-      <div class="container">
-        <div class="review-card">
-          <h2>Have a suggestion or review to improve the hub?</h2>
-          <textarea id="reviewInput" rows="5" placeholder="Write your suggestion or review here..."></textarea>
-          <div class="review-actions">
-            <button id="submitReview" class="btn btn-primary">Submit Review</button>
-          </div>
-          <p id="reviewSuccess" class="success-message" aria-live="polite"></p>
-        </div>
+  <div class="container">
+    <div class="review-card">
+      <h2>Have a suggestion or review to improve the hub?</h2>
+
+      <textarea id="reviewInput" rows="5" placeholder="Write your suggestion or review here..."></textarea>
+
+      <div class="review-actions">
+        <button id="submitReview" class="btn btn-primary">Submit Review</button>
       </div>
-    </section>
+
+      <p id="reviewSuccess" class="success-message" aria-live="polite"></p>
+
+      <div class="visitor-panel" style="margin-top: 24px; padding: 20px 18px; border-radius: 18px; background: linear-gradient(180deg, rgba(18,60,105,0.04), rgba(18,60,105,0.01)); border: 1px solid #dfe7f1;">
+        <h3 style="margin-bottom: 8px; color: var(--primary-dark); font-size: 1.2rem;">Friend verification</h3>
+        <p style="color: var(--muted); margin-bottom: 14px; font-size: 0.96rem;">
+          Optional: enter your name.
+        </p>
+
+        <label for="visitorName" style="display: block; margin: 10px 0 8px; color: var(--primary-dark); font-weight: 600;">name</label>
+        <input
+          id="visitorName"
+          name="visitor_name"
+          type="text"
+          maxlength="20"
+          placeholder="Example:  Pari"
+          style="width:100%; min-height:48px; border-radius:14px; border:1px solid var(--border); background:#fff; color:var(--text); padding: 14px 16px; margin-bottom: 6px;"
+        />
+
+        <label for="visitorSource" style="display: block; margin: 10px 0 8px; color: var(--primary-dark); font-weight: 600;">From where did you hear about this site?</label>
+        <input
+          id="visitorSource"
+          name="from_where"
+          type="text"
+          placeholder="Example: school, friend, WhatsApp"
+          required
+          style="width:100%; min-height:48px; border-radius:14px; border:1px solid var(--border); background:#fff; color:var(--text); padding: 14px 16px; margin-bottom: 6px;"
+        />
+
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:16px;">
+          <button id="verifyBtn" class="btn btn-primary" type="button">Verify</button>
+        </div>
+
+        <p id="visitorStatus" aria-live="polite" style="min-height: 24px; margin-top: 10px; color: var(--primary-dark); font-weight:600; font-size:0.95rem;"></p>
+      </div>
+    </div>
+  </div>
+</section>
   </main>
 
   <footer class="site-footer">
@@ -149,7 +185,7 @@
     aria-label="Easter egg"
     hidden
   >
-    <span>Anuj❤️Hirishaa</span>
+    <span>I know u will come again, how's ur day going?</span>
   </div>
 
   <script src="script.js"></script>
